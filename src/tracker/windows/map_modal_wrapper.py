@@ -1,10 +1,10 @@
-
 from PyQt5 import QtWidgets
 from generated.MapModal import Ui_Dialog
 from tracker.util.game_entry import GameEntryManager
 from .dialog_manager import DialogManager
 from generated.enums.realms import Realm
 from generated.enums.maps import Map
+from tracker.util.realm_map import maps_from_realm
 
 
 class NoMapSelected(Exception): pass
@@ -104,9 +104,11 @@ class MapModalWrapper(Ui_Dialog):
             raise NoMapSelected
 
     def populate_realms(self):
-        self.realms.addItems([m.name for m in Realm if m.value != 0])
+        self.realms.addItems([m.name for m in Realm])
 
-    
+    def on_realm_change(self, value):
+        self.maps.clear()
+        self.maps.addItems([r.name for r in maps_from_realm(Realm[value])])
 
     def setupUi(self, window):
         func = window.accept
@@ -116,5 +118,4 @@ class MapModalWrapper(Ui_Dialog):
         window.accept = callback
         super().setupUi(window)
         self.populate_realms()
-
-       
+        self.realms.currentTextChanged.connect(self.on_realm_change)

@@ -42,10 +42,10 @@
   <widget class="QListWidget" name="maps">
    <property name="geometry">
     <rect>
-     <x>230</x>
-     <y>130</y>
-     <width>256</width>
-     <height>192</height>
+     <x>280</x>
+     <y>40</y>
+     <width>461</width>
+     <height>461</height>
     </rect>
    </property>
   </widget>

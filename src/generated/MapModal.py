@@ -24,7 +24,7 @@ class Ui_Dialog(object):
         self.realms.setGeometry(QtCore.QRect(40, 40, 231, 41))
         self.realms.setObjectName("realms")
         self.maps = QtWidgets.QListWidget(Dialog)
-        self.maps.setGeometry(QtCore.QRect(230, 130, 256, 192))
+        self.maps.setGeometry(QtCore.QRect(280, 40, 461, 461))
         self.maps.setObjectName("maps")
 
         self.retranslateUi(Dialog)
