@@ -9,9 +9,9 @@ from PyQt5 import QtCore, QtGui
 from .dialog_manager import DialogManager
 from tracker.data.pips import Pips
 from enum import Enum
-from tracker.data.maps import Map
-from tracker.data.killers import Killer
-from tracker.data.survivors import Survivor
+from generated.enums.maps import Map
+from generated.enums.killers import Killer  
+from generated.enums.survivors import Survivor
 
 class NoVictorySelected(Exception): pass
 

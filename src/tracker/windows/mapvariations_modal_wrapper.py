@@ -1,7 +1,7 @@
 from PyQt5 import QtWidgets
 from generated.MapVariations import Ui_Mapvariations
 from tracker.util.game_entry import GameEntryManager
-from tracker.data.maps import Map
+from generated.enums.maps import Map
 
 
 
@@ -14,13 +14,8 @@ class MapVariationModalWrapper(Ui_Mapvariations):
         Dialog.show()
 
 
-
-    def get_map_radio(self):
-        if self.greenville.isChecked():
-            return Map.GreenvilleSquare
-        else:
-            raise NoMapSelected
-
+    
+    
 
 
     def save_callback(self):

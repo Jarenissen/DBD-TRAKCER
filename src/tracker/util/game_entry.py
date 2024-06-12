@@ -1,7 +1,7 @@
 from tracker.util.database import Database
-from tracker.data.killers import Killer
-from tracker.data.maps import Map
-from tracker.data.survivors import Survivor
+from generated.enums.killers import Killer
+from generated.enums.survivors import Survivor
+from generated.enums.maps import Map
 
 class IncompleteEntry(Exception):
     pass

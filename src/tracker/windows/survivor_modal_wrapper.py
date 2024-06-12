@@ -2,7 +2,7 @@
 from PyQt5 import QtWidgets
 from generated.SurvivorModal import Ui_Dialog
 from tracker.util.game_entry import GameEntryManager
-from tracker.data.survivors import Survivor
+from generated.enums.survivors import Survivor
 
 class NoSurvivorSelected(Exception): pass
 

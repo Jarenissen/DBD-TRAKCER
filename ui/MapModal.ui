@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>749</width>
-    <height>737</height>
+    <height>508</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -29,44 +29,25 @@
     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
    </property>
   </widget>
-  <widget class="QGroupBox" name="pickMapGroup">
+  <widget class="QComboBox" name="realms">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>20</y>
-     <width>721</width>
-     <height>471</height>
+     <x>40</x>
+     <y>40</y>
+     <width>231</width>
+     <height>41</height>
     </rect>
    </property>
-   <property name="title">
-    <string>Pick Map</string>
+  </widget>
+  <widget class="QListWidget" name="maps">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>130</y>
+     <width>256</width>
+     <height>192</height>
+    </rect>
    </property>
-   <widget class="QRadioButton" name="macmillan">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>46</y>
-      <width>171</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>The Macmillan Estate</string>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="autohavenwreckers">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>40</y>
-      <width>171</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Autohaven wreckers</string>
-    </property>
-   </widget>
   </widget>
  </widget>
  <resources/>

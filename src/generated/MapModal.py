@@ -14,21 +14,18 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(749, 737)
+        Dialog.resize(749, 508)
         self.buttonBox = QtWidgets.QDialogButtonBox(Dialog)
         self.buttonBox.setGeometry(QtCore.QRect(400, 510, 341, 32))
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
         self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
         self.buttonBox.setObjectName("buttonBox")
-        self.pickMapGroup = QtWidgets.QGroupBox(Dialog)
-        self.pickMapGroup.setGeometry(QtCore.QRect(10, 20, 721, 471))
-        self.pickMapGroup.setObjectName("pickMapGroup")
-        self.macmillan = QtWidgets.QRadioButton(self.pickMapGroup)
-        self.macmillan.setGeometry(QtCore.QRect(70, 46, 171, 31))
-        self.macmillan.setObjectName("macmillan")
-        self.autohavenwreckers = QtWidgets.QRadioButton(self.pickMapGroup)
-        self.autohavenwreckers.setGeometry(QtCore.QRect(260, 40, 171, 31))
-        self.autohavenwreckers.setObjectName("autohavenwreckers")
+        self.realms = QtWidgets.QComboBox(Dialog)
+        self.realms.setGeometry(QtCore.QRect(40, 40, 231, 41))
+        self.realms.setObjectName("realms")
+        self.maps = QtWidgets.QListWidget(Dialog)
+        self.maps.setGeometry(QtCore.QRect(230, 130, 256, 192))
+        self.maps.setObjectName("maps")
 
         self.retranslateUi(Dialog)
         self.buttonBox.accepted.connect(Dialog.accept) # type: ignore
@@ -38,9 +35,6 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.pickMapGroup.setTitle(_translate("Dialog", "Pick Map"))
-        self.macmillan.setText(_translate("Dialog", "The Macmillan Estate"))
-        self.autohavenwreckers.setText(_translate("Dialog", "Autohaven wreckers"))
 
 
 if __name__ == "__main__":

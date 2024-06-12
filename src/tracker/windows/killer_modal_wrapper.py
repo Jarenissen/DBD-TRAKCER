@@ -2,7 +2,7 @@
 from PyQt5 import QtWidgets
 from generated.KillerModal import Ui_Dialog
 from tracker.util.game_entry import GameEntryManager
-from tracker.data.killers import Killer
+from generated.enums.killers import Killer
 
 class NoKillerSelected(Exception): pass
 

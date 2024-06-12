@@ -1,8 +1,8 @@
 import sqlite3
 import os
-from tracker.data.killers import Killer
-from tracker.data.survivors import Survivor
-from tracker.data.maps import Map
+from generated.enums.killers import Killer
+from generated.enums.survivors import Survivor
+from generated.enums.maps import Map
 from tracker.data.victory import Victory
 from tracker.data.pips import Pips
 from datetime import datetime
