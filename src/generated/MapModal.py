@@ -14,9 +14,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(749, 508)
+        Dialog.resize(986, 708)
         self.buttonBox = QtWidgets.QDialogButtonBox(Dialog)
-        self.buttonBox.setGeometry(QtCore.QRect(400, 510, 341, 32))
+        self.buttonBox.setGeometry(QtCore.QRect(390, 460, 341, 32))
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
         self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
         self.buttonBox.setObjectName("buttonBox")
@@ -24,7 +24,7 @@ class Ui_Dialog(object):
         self.realms.setGeometry(QtCore.QRect(40, 40, 231, 41))
         self.realms.setObjectName("realms")
         self.maps = QtWidgets.QListWidget(Dialog)
-        self.maps.setGeometry(QtCore.QRect(280, 40, 461, 461))
+        self.maps.setGeometry(QtCore.QRect(280, 40, 461, 401))
         self.maps.setObjectName("maps")
 
         self.retranslateUi(Dialog)
