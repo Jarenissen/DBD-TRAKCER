@@ -62,7 +62,7 @@ class KillerModalWrapper(Ui_Dialog):
         elif self.tricksterbutton.isChecked():
             return  Killer.Trickster
         elif self.nemesisbutton.isChecked():
-            return  Killer.Nemesis
+            return  Killer.Nemsis
         elif self.cenobitebutton.isChecked():
             return  Killer.Cenobite
         elif self.artistbutton.isChecked():
@@ -92,7 +92,7 @@ class KillerModalWrapper(Ui_Dialog):
         
             raise NoKillerSelected
 
-    def save_callback(self):
+    def save_callback(self): 
         var = self.get_killer_radio()
         GameEntryManager.set_killer(var)
 

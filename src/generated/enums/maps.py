@@ -43,6 +43,7 @@ class Map(Enum):
 	TreatmentTheatre = 39
 	Wreckers27Yard = 40
 	WretchedShop = 41
+	
 
 	def get_img_path(self):
 		if self.value is not 0:
