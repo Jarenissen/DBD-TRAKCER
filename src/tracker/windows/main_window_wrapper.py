@@ -12,6 +12,7 @@ from enum import Enum
 from generated.enums.maps import Map
 from generated.enums.killers import Killer  
 from generated.enums.survivors import Survivor
+from tracker.util.pathing import asset_path
 
 class NoVictorySelected(Exception): pass
 
@@ -88,12 +89,14 @@ class MainWindowWrapper(Ui_MainWindow):
         self.KillerFilter.addItems([x.name for x in Killer if x.value != 0])
         self.SurvivorFilter.addItems([x.name for x in Survivor if x.value != 0])
         GameEntryManager.set_callback(self.update_selections)
-        self.logoLabel.setPixmap(QtGui.QPixmap("src/assets/Logo.png").scaled(self.logoLabel.size(), QtCore.Qt.IgnoreAspectRatio))
+        self.logoLabel.setPixmap(QtGui.QPixmap(asset_path("Logo.png")).scaled(self.logoLabel.size(), QtCore.Qt.IgnoreAspectRatio))
+        # not random
         self.saveButton.clicked.connect(self.save_callback)
         self.clearButton.clicked.connect(self.clear_callback)
         self.saveButton.clicked.connect(self.clear_callback)
         self.selectSurvivorButton.clicked.connect(lambda _: DialogManager.open(SurvivorModalWrapper()))
         self.selectMapButton.clicked.connect(lambda _: DialogManager.open(MapModalWrapper()))
         self.selectKillerButton.clicked.connect(lambda _: DialogManager.open(KillerModalWrapper()))
+
         
         

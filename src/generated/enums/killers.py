@@ -1,4 +1,5 @@
 from enum import Enum
+from tracker.util.pathing import asset_path
 
 class Killer(Enum):
 	NotSelected = 0
@@ -42,5 +43,5 @@ class Killer(Enum):
 
 	def get_img_path(self):
 		if self.value is not 0:
-			return f"src/assets/killers/{self.name}.png"
+			return asset_path(f"killers/{self.name}.png")
 		else: return None

@@ -1,4 +1,5 @@
 from enum import Enum
+from tracker.util.pathing import asset_path
 
 class Realm(Enum):
 	NotSelected = 0
@@ -25,5 +26,5 @@ class Realm(Enum):
 
 	def get_img_path(self):
 		if self.value is not 0:
-			return f"src/assets/realms/{self.name}.png"
+			return asset_path(f"realms/{self.name}.png")
 		else: return None

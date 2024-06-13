@@ -1,4 +1,5 @@
 from enum import Enum
+from tracker.util.pathing import asset_path
 
 class Map(Enum):
 	NotSelected = 0
@@ -43,9 +44,8 @@ class Map(Enum):
 	TreatmentTheatre = 39
 	Wreckers27Yard = 40
 	WretchedShop = 41
-	
 
 	def get_img_path(self):
 		if self.value is not 0:
-			return f"src/assets/maps/{self.name}.png"
+			return asset_path(f"maps/{self.name}.png")
 		else: return None
