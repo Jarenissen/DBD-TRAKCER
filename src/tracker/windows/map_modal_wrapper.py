@@ -27,7 +27,7 @@ class MapModalWrapper(Ui_Dialog):
 
     def on_realm_change(self, value):
         self.maps.clear()
-        
+        self.maps.addItems([r.name for r in maps_from_realm(Realm[value])])
         
 
     def on_button_press(self):
