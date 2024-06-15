@@ -32,7 +32,15 @@ class MainWindowWrapper(Ui_MainWindow):
 
     def update_list_contents(self):
         self.gameHistoryList.clear()
-        self.gameHistoryList.addItems(map(lambda x: " - ".join([y.name if isinstance(y, Enum) else y for y in x]), Database().get_all()))
+        if self.SurvivorFilter.currentText() and self.SurvivorFilter.currentText() != Survivor.NotSelected.name:
+            Database().apply_survivor_filter(Survivor[self.SurvivorFilter.currentText()])
+        if self.KillerFilter.currentText() and self.KillerFilter.currentText() != Killer.NotSelected.name:
+            Database().apply_killer_filter(Killer[self.KillerFilter.currentText()])
+        if self.MapFilter.currentText() and self.MapFilter.currentText() != Map.NotSelected.name:
+            Database().apply_map_filter(Map[self.MapFilter.currentText()])
+        data = Database().get_all_filter()
+        if data:
+            self.gameHistoryList.addItems(map(lambda x: " - ".join([y.name if isinstance(y, Enum) else y for y in x ]), data))
 
     def get_victory_radio(self):
         if self.killerWonRadio.isChecked():
@@ -70,7 +78,6 @@ class MainWindowWrapper(Ui_MainWindow):
             self.errorLabel.setText("Data Missing...")
     
     def clear_callback(self):
-        self.errorLabel.setText("")
         self.victoryTypeButtonGroup.setExclusive(False)
         self.killerWonRadio.setChecked(False)
         self.hatchEscapeRadio.setChecked(False)
@@ -82,12 +89,12 @@ class MainWindowWrapper(Ui_MainWindow):
         super().setupUi(main_window)
         self.update_selections()
         self.update_list_contents()
-        self.MapFilter.addItem("All")
-        self.KillerFilter.addItem("All")
-        self.SurvivorFilter.addItem("All")
-        self.MapFilter.addItems([x.name for x in Map if x.value != 0])
-        self.KillerFilter.addItems([x.name for x in Killer if x.value != 0])
-        self.SurvivorFilter.addItems([x.name for x in Survivor if x.value != 0])
+        self.MapFilter.addItems([x.name for x in Map])
+        self.KillerFilter.addItems([x.name for x in Killer])
+        self.SurvivorFilter.addItems([x.name for x in Survivor])
+        self.SurvivorFilter.currentIndexChanged.connect(self.update_list_contents)
+        self.KillerFilter.currentIndexChanged.connect(self.update_list_contents)
+        self.MapFilter.currentIndexChanged.connect(self.update_list_contents)
         GameEntryManager.set_callback(self.update_selections)
         self.logoLabel.setPixmap(QtGui.QPixmap(asset_path("Logo.png")).scaled(self.logoLabel.size(), QtCore.Qt.IgnoreAspectRatio))
         # not random
@@ -97,6 +104,3 @@ class MainWindowWrapper(Ui_MainWindow):
         self.selectSurvivorButton.clicked.connect(lambda _: DialogManager.open(SurvivorModalWrapper()))
         self.selectMapButton.clicked.connect(lambda _: DialogManager.open(MapModalWrapper()))
         self.selectKillerButton.clicked.connect(lambda _: DialogManager.open(KillerModalWrapper()))
-
-        
-        
