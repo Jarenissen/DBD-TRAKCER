@@ -1,4 +1,3 @@
-
 import sqlite3
 import os
 from generated.enums.killers import Killer
@@ -68,29 +67,41 @@ class Database(object):
 
     def apply_map_filter(self, map):
         self.map_filter = map
+
+    def clear_filter(self):
+        
+        self.survivor_filter = None
+        self.killer_filter = None
+        self.map_filter = None
+
+
         
     def get_all_filter(self):
         filter = ""
         params = []
-        if self.survivor_filter:
-            filter += " survivor=?"
-            params += [self.survivor_filter.value]
-        if self.killer_filter:
-            filter += " killer=?"
-            params += [self.killer_filter.value]
-        if self.map_filter:
-            filter += " mapvariation=?"
-            params += [self.map_filter.value]
+
+        def add_filter(val, name):
+            nonlocal filter, params
+            if val:
+                if filter == "":
+                    filter += " WHERE"
+                else:
+                    filter += " AND"
+                filter += " "+ name +"=?"
+                params += [val.value]
+    
+
+        add_filter(self.survivor_filter, "survivor")
+        add_filter(self.killer_filter, "killer")
+        add_filter(self.map_filter, "mapvariation")
         cursor = self.conn.cursor()
-        if filter != "":
-            cursor.execute("SELECT * FROM games WHERE" + filter, tuple(params))
-            self.conn.commit()
-            return map(lambda x: (Survivor(x[1]), Killer(x[2]), Map(x[3]), Victory(x[4]), Pips(x[5]), x[6]), cursor.fetchall())
-        else:
-            return self.get_all()
+        cursor.execute("SELECT * FROM games" + filter, tuple(params))
+        self.conn.commit()
+        return map(lambda x: (Survivor(x[1]), Killer(x[2]), Map(x[3]), Victory(x[4]), Pips(x[5]), x[6]), reversed (cursor.fetchall()))
+
 
     def get_all(self):
         cursor = self.conn.cursor()
         cursor.execute("SELECT * FROM games")
         self.conn.commit()
-        return map(lambda x: (Survivor(x[1]), Killer(x[2]), Map(x[3]), Victory(x[4]), Pips(x[5]), x[6]), cursor.fetchall())
+        return map(lambda x: (Survivor(x[1]), Killer(x[2]), Map(x[3]), Victory(x[4]), Pips(x[5]), x[6]), reversed (cursor.fetchall()))

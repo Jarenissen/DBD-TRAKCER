@@ -32,6 +32,7 @@ class MainWindowWrapper(Ui_MainWindow):
 
     def update_list_contents(self):
         self.gameHistoryList.clear()
+        Database().clear_filter()
         if self.SurvivorFilter.currentText() and self.SurvivorFilter.currentText() != Survivor.NotSelected.name:
             Database().apply_survivor_filter(Survivor[self.SurvivorFilter.currentText()])
         if self.KillerFilter.currentText() and self.KillerFilter.currentText() != Killer.NotSelected.name:
@@ -39,6 +40,10 @@ class MainWindowWrapper(Ui_MainWindow):
         if self.MapFilter.currentText() and self.MapFilter.currentText() != Map.NotSelected.name:
             Database().apply_map_filter(Map[self.MapFilter.currentText()])
         data = Database().get_all_filter()
+
+        
+            
+
         if data:
             self.gameHistoryList.addItems(map(lambda x: " - ".join([y.name if isinstance(y, Enum) else y for y in x ]), data))
 
